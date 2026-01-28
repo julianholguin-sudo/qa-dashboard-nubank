@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Gestión QA - Nubank Colombia</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --nu-purple: #820AD1;
+            --nu-purple-light: #AB4EED;
+            --nu-bg: #F5F5F5;
+            --nu-white: #FFFFFF;
+            --nu-text: #111111;
+            --nu-text-secondary: #767676;
+            --nu-success: #008D68;
+            --nu-success-light: #2EBDAE;
+            --nu-alert: #FD9726;
+            --nu-error: #E53E3E;
+            --nu-blue: #1E88E5;
+        }
+
+        body {
+            background-color: var(--nu-bg);
+            min-height: 100vh;
+            color: var(--nu-text);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #820AD1 0%, #AB4EED 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(130, 10, 209, 0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            opacity: 0.85;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Main */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Score Card Section */
+        .scorecard-section {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .scorecard-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scorecard-header.purple {
+            background: linear-gradient(135deg, #820AD1 0%, #AB4EED 100%);
+            color: white;
+        }
+
+        .scorecard-header.teal {
+            background: linear-gradient(135deg, #008D68 0%, #2EBDAE 100%);
+            color: white;
+        }
+
+        .scorecard-header-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .scorecard-header-text h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .scorecard-header-text p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            margin-top: 0.15rem;
+        }
+
+        .scorecard-body {
+            padding: 2rem;
+        }
+
+        /* Sub-section Divider */
+        .subsection-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .subsection-title h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--nu-text);
+        }
+
+        .subsection-title .icon {
+            font-size: 1.25rem;
+        }
+
+        .subsection-title p {
+            font-size: 0.85rem;
+            color: var(--nu-text-secondary);
+            margin-left: auto;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kpi-card {
+            background: #fafafa;
+            border-radius: 0.875rem;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .kpi-card:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .kpi-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .kpi-card .value.purple { color: var(--nu-purple); }
+        .kpi-card .value.green { color: var(--nu-success); }
+        .kpi-card .value.orange { color: var(--nu-alert); }
+        .kpi-card .value.red { color: var(--nu-error); }
+        .kpi-card .value.teal { color: var(--nu-success-light); }
+
+        .kpi-card .label {
+            font-size: 0.75rem;
+            color: var(--nu-text-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-weight: 600;
+        }
+
+        .kpi-card .sublabel {
+            font-size: 0.7rem;
+            color: var(--nu-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--nu-text-secondary);
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.purple { background: var(--nu-purple); }
+        .legend-dot.orange { background: var(--nu-alert); }
+        .legend-dot.green { background: var(--nu-success); }
+        .legend-dot.teal { background: var(--nu-success-light); }
+        .legend-dot.gray { background: #999; }
+
+        /* Two Column */
+        .two-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Table */
+        .table-container {
+            background: #fafafa;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: #f0f0f0;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--nu-text-secondary);
+            text-transform: uppercase;
+        }
+
+        .data-table th:not(:first-child) { text-align: center; }
+
+        .data-table td {
+            padding: 0.65rem 1rem;
+            border-top: 1px solid #e8e8e8;
+            font-size: 0.8rem;
+        }
+
+        .data-table td:not(:first-child) { text-align: center; }
+        .data-table tr:hover { background: #f5f5f5; }
+        .data-table tr.trial-row { background: #f9f9f9; opacity: 0.8; }
+        .data-table .semana { font-weight: 600; color: var(--nu-text); }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: rgba(0, 141, 104, 0.1); color: var(--nu-success); }
+        .badge-warning { background: rgba(253, 151, 38, 0.1); color: var(--nu-alert); }
+        .badge-excellence { background: rgba(130, 10, 209, 0.1); color: var(--nu-purple); }
+        .badge-error { background: rgba(229, 62, 62, 0.1); color: var(--nu-error); }
+        .badge-trial { background: rgba(100, 100, 100, 0.1); color: #666; }
+        .badge-festivo { background: rgba(30, 136, 229, 0.1); color: var(--nu-blue); }
+
+        /* Provider Stats */
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .provider-card {
+            background: #fafafa;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .provider-card h4 {
+            font-size: 0.8rem;
+            color: var(--nu-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .provider-card .stat {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .provider-card .stat.konecta { color: #E91E63; }
+        .provider-card .stat.tp { color: #2196F3; }
+
+        /* Note box */
+        .note-box {
+            background: rgba(30, 136, 229, 0.05);
+            border-left: 3px solid var(--nu-blue);
+            padding: 0.75rem 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--nu-text-secondary);
+        }
+
+        .note-box strong {
+            color: var(--nu-text);
+        }
+
+        /* Tooltip */
+        .chart-tooltip {
+            position: absolute;
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 100;
+            font-size: 0.75rem;
+        }
+
+        .chart-tooltip.visible { opacity: 1; }
+        .tooltip-title { font-weight: 600; margin-bottom: 0.4rem; }
+        .tooltip-row { display: flex; gap: 0.5rem; margin: 0.15rem 0; }
+        .tooltip-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .tooltip-value { font-weight: 600; margin-left: auto; }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid #f0f0f0;
+            padding: 1.25rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-logo {
+            background: var(--nu-purple);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .footer-text { font-size: 0.8rem; color: var(--nu-text-secondary); }
+
+        /* Spacer */
+        .spacer { margin-top: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.25rem; }
+            .header-badge { display: none; }
+            .main { padding: 1rem; }
+            .scorecard-body { padding: 1.25rem; }
+            .two-columns { grid-template-columns: 1fr; }
+            .kpi-card .value { font-size: 1.5rem; }
+        }
+
+        @media print {
+            .scorecard-section { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-box">Nu</div>
+                <div>
+                    <h1>Resultados de Gestión QA</h1>
+                    <p>Semana a Semana • Q4 2025 / Enero 2026</p>
+                </div>
+            </div>
+            <div class="header-badge">📊 Customer Management • BPO Operations</div>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- ============================================== -->
+        <!-- SCORE CARD: CANCELACIONES -->
+        <!-- ============================================== -->
+        <section class="scorecard-section">
+            <div class="scorecard-header purple">
+                <div class="scorecard-header-icon">📋</div>
+                <div class="scorecard-header-text">
+                    <h2>Score Card - Cancelaciones</h2>
+                    <p>Auditorías BPO: Konecta & Teleperformance • Oct 2025 - Ene 2026</p>
+                </div>
+            </div>
+
+            <div class="scorecard-body">
+
+                <!-- CUMPLIMIENTO DE AUDITORÍAS -->
+                <div class="subsection-title">
+                    <span class="icon">🎯</span>
+                    <h3>Cumplimiento de Auditorías</h3>
+                    <p>Mi gestión: Auditorías realizadas vs Target</p>
+                </div>
+
+                <div class="note-box">
+                    <strong>📌 Notas:</strong> Las primeras 2 semanas (Oct 06-19) fueron período de prueba e inicio de monitoreos. 
+                    En semanas festivas, se considera cumplido si se alcanza ≥80% del target.
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="value purple" id="canc-total">1,416</div>
+                        <div class="label">Total Auditorías</div>
+                        <div class="sublabel">Período operativo</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="canc-target">1,258</div>
+                        <div class="label">Target Acumulado</div>
+                        <div class="sublabel">Excluyendo período prueba</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green" id="canc-cumplimiento">113%</div>
+                        <div class="label">Cumplimiento</div>
+                        <div class="sublabel">Sobrecumplimiento ✓</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green" id="canc-extra">+158</div>
+                        <div class="label">Auditorías Extra</div>
+                        <div class="sublabel">Por encima del target</div>
+                    </div>
+                </div>
+
+                <div class="chart-legend">
+                    <div class="legend-item"><div class="legend-dot purple"></div><span>Auditorías Realizadas</span></div>
+                    <div class="legend-item"><div class="legend-dot orange"></div><span>Target Semanal</span></div>
+                    <div class="legend-item"><div class="legend-dot gray"></div><span>Período de Prueba</span></div>
+                </div>
+
+                <div class="chart-container" id="chart-canc-cumplimiento">
+                    <svg id="svg-canc-cumplimiento"></svg>
+                    <div class="chart-tooltip" id="tooltip-canc-cumplimiento"></div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Semana</th>
+                                <th>Target</th>
+                                <th>Realizadas</th>
+                                <th>% Cumplimiento</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-canc-cumplimiento"></tbody>
+                    </table>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- CALIDAD DE LOS AGENTES -->
+                <div class="subsection-title">
+                    <span class="icon">⭐</span>
+                    <h3>Calidad de los Agentes (QA Score)</h3>
+                    <p>Desempeño BPO vs Target 95%</p>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="value orange" id="canc-qa-avg">86.5%</div>
+                        <div class="label">QA Score Promedio</div>
+                        <div class="sublabel">Target: 95%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green" id="canc-qa-max">93.4%</div>
+                        <div class="label">Mejor Semana</div>
+                        <div class="sublabel" id="canc-qa-max-week">Dic 01-07</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value red" id="canc-qa-min">73.4%</div>
+                        <div class="label">Semana más Baja</div>
+                        <div class="sublabel" id="canc-qa-min-week">Ene 19-25</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="canc-gap">-8.5%</div>
+                        <div class="label">Gap vs Target</div>
+                        <div class="sublabel">Oportunidad de mejora</div>
+                    </div>
+                </div>
+
+                <div class="two-columns">
+                    <div>
+                        <div class="chart-legend">
+                            <div class="legend-item"><div class="legend-dot green"></div><span>QA Score</span></div>
+                            <div class="legend-item"><div class="legend-dot orange"></div><span>Target 95%</span></div>
+                        </div>
+                        <div class="chart-container" id="chart-canc-qa">
+                            <svg id="svg-canc-qa"></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="kpi-grid" style="margin-bottom: 1rem;">
+                            <div class="kpi-card">
+                                <div class="value green" id="canc-sem-90">6</div>
+                                <div class="label">Semanas ≥90%</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="value orange" id="canc-sem-80">6</div>
+                                <div class="label">Semanas 80-89%</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="value red" id="canc-sem-bajo">2</div>
+                                <div class="label">Semanas &lt;80%</div>
+                            </div>
+                        </div>
+                        <div class="table-container" style="max-height: 220px; overflow-y: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Semana</th>
+                                        <th>QA Score</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-canc-qa"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- DISTRIBUCIÓN POR PROVEEDOR -->
+                <div class="subsection-title">
+                    <span class="icon">🏢</span>
+                    <h3>Distribución de Errores por Proveedor</h3>
+                    <p>Hallazgos críticos acumulados</p>
+                </div>
+
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h4>🏢 Konecta</h4>
+                        <div class="stat konecta">78</div>
+                        <div class="label">Errores críticos</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>🏢 Teleperformance</h4>
+                        <div class="stat tp">52</div>
+                        <div class="label">Errores críticos</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>📊 Total</h4>
+                        <div class="stat">130</div>
+                        <div class="label">Errores período</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>📈 Tasa Error</h4>
+                        <div class="stat orange">9.2%</div>
+                        <div class="label">Promedio</div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- DISTRIBUCIÓN POR TIPO DE SOLICITUD -->
+                <div class="subsection-title">
+                    <span class="icon">📊</span>
+                    <h3>Distribución por Tipo de Solicitud</h3>
+                    <p>Clasificación de auditorías realizadas</p>
+                </div>
+
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h4>💳 Cancelación Crédito</h4>
+                        <div class="stat purple">524</div>
+                        <div class="label">35% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>🏦 Cancelación Débito</h4>
+                        <div class="stat" style="color: var(--nu-success-light);">687</div>
+                        <div class="label">46% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>📦 Multiproducto</h4>
+                        <div class="stat" style="color: var(--nu-alert);">142</div>
+                        <div class="label">9.5% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>🔄 Desistimiento</h4>
+                        <div class="stat" style="color: var(--nu-blue);">144</div>
+                        <div class="label">9.5% del total</div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- PRINCIPALES CRITERIOS DE FALLA -->
+                <div class="subsection-title">
+                    <span class="icon">⚠️</span>
+                    <h3>Principales Criterios de Falla</h3>
+                    <p>Oportunidades de mejora identificadas</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Criterio Evaluado</th>
+                                <th>Fallas</th>
+                                <th>% Error</th>
+                                <th>Impacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="semana">¿Se siguieron las instrucciones de Weduka?</td>
+                                <td style="font-weight: 600; color: var(--nu-error);">89</td>
+                                <td>6.3%</td>
+                                <td><span class="badge badge-error">🔴 Crítico</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Se realizó la validación de datos (HF)?</td>
+                                <td style="font-weight: 600; color: var(--nu-error);">52</td>
+                                <td>3.7%</td>
+                                <td><span class="badge badge-error">🔴 Crítico</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Se generó proceso de retención?</td>
+                                <td style="font-weight: 600; color: var(--nu-alert);">47</td>
+                                <td>3.3%</td>
+                                <td><span class="badge badge-warning">🟠 Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Se compartieron T&C correctamente?</td>
+                                <td style="font-weight: 600; color: var(--nu-alert);">38</td>
+                                <td>2.7%</td>
+                                <td><span class="badge badge-warning">🟠 Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Se revisaron los widgets correspondientes?</td>
+                                <td style="font-weight: 600;">31</td>
+                                <td>2.2%</td>
+                                <td><span class="badge badge-warning">🟠 Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Cliente aceptó T&C textualmente?</td>
+                                <td style="font-weight: 600;">24</td>
+                                <td>1.7%</td>
+                                <td><span class="badge badge-success">🟢 Medio</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- RECONOCIMIENTOS POSITIVOS -->
+                <div class="subsection-title">
+                    <span class="icon">🌟</span>
+                    <h3>Reconocimientos Positivos</h3>
+                    <p>Gestiones destacadas del período</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Yeferson Dona</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Excelente gestión, fijarse en detalles como el cumpleaños del usuario permitió un promotor."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Yuliana Guerrero</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"100% en desistimiento de cancelación, retención clara y oportuna."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Nicolas Gonzalez</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Retención efectiva con buen tono Nu, resultó en buena calificación del cliente."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Valentina Claros</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Domina perfectamente el proceso de cancelación. Trabajo en equipo ejemplar."</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SCORE CARD: SPECIAL CASES -->
+        <!-- ============================================== -->
+        <section class="scorecard-section">
+            <div class="scorecard-header teal">
+                <div class="scorecard-header-icon">⭐</div>
+                <div class="scorecard-header-text">
+                    <h2>Score Card - Special Cases</h2>
+                    <p>Auditorías Equipo Interno Nu Colombia • Oct 2025 - Ene 2026</p>
+                </div>
+            </div>
+
+            <div class="scorecard-body">
+
+                <!-- CUMPLIMIENTO DE AUDITORÍAS -->
+                <div class="subsection-title">
+                    <span class="icon">🎯</span>
+                    <h3>Cumplimiento de Auditorías</h3>
+                    <p>Mi gestión: Cobertura semanal</p>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="value teal" id="sc-total">251</div>
+                        <div class="label">Total Auditorías</div>
+                        <div class="sublabel">Realizadas en el período</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green">15</div>
+                        <div class="label">Semanas Cubiertas</div>
+                        <div class="sublabel">Oct 2025 - Ene 2026</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green">100%</div>
+                        <div class="label">Cobertura</div>
+                        <div class="sublabel">Continuidad total ✓</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="sc-avg-week">16.7</div>
+                        <div class="label">Promedio/Semana</div>
+                        <div class="sublabel">Auditorías semanales</div>
+                    </div>
+                </div>
+
+                <div class="chart-legend">
+                    <div class="legend-item"><div class="legend-dot teal"></div><span>Auditorías por Semana</span></div>
+                </div>
+
+                <div class="chart-container" id="chart-sc-cumplimiento">
+                    <svg id="svg-sc-cumplimiento"></svg>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Semana</th>
+                                <th>Auditorías</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-sc-cumplimiento"></tbody>
+                    </table>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- CALIDAD DE LOS AGENTES -->
+                <div class="subsection-title">
+                    <span class="icon">⭐</span>
+                    <h3>Calidad de los Agentes (QA Score)</h3>
+                    <p>Desempeño Equipo Interno vs Target 95%</p>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="value orange" id="sc-qa-avg">87.2%</div>
+                        <div class="label">QA Score Promedio</div>
+                        <div class="sublabel">Target: 95%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value green" id="sc-qa-max">93.9%</div>
+                        <div class="label">Mejor Semana</div>
+                        <div class="sublabel" id="sc-qa-max-week">Nov 17-23</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value red" id="sc-qa-min">70.6%</div>
+                        <div class="label">Semana más Baja</div>
+                        <div class="sublabel" id="sc-qa-min-week">Ene 19-25</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value" id="sc-gap">-7.8%</div>
+                        <div class="label">Gap vs Target</div>
+                        <div class="sublabel">Oportunidad de mejora</div>
+                    </div>
+                </div>
+
+                <div class="two-columns">
+                    <div>
+                        <div class="chart-legend">
+                            <div class="legend-item"><div class="legend-dot teal"></div><span>QA Score</span></div>
+                            <div class="legend-item"><div class="legend-dot orange"></div><span>Target 95%</span></div>
+                        </div>
+                        <div class="chart-container" id="chart-sc-qa">
+                            <svg id="svg-sc-qa"></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="kpi-grid" style="margin-bottom: 1rem;">
+                            <div class="kpi-card">
+                                <div class="value green" id="sc-sem-90">5</div>
+                                <div class="label">Semanas ≥90%</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="value orange" id="sc-sem-80">9</div>
+                                <div class="label">Semanas 80-89%</div>
+                            </div>
+                            <div class="kpi-card">
+                                <div class="value red" id="sc-sem-bajo">1</div>
+                                <div class="label">Semanas &lt;80%</div>
+                            </div>
+                        </div>
+                        <div class="table-container" style="max-height: 220px; overflow-y: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Semana</th>
+                                        <th>QA Score</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-sc-qa"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- DISTRIBUCIÓN POR CANAL DE CONTACTO -->
+                <div class="subsection-title">
+                    <span class="icon">📡</span>
+                    <h3>Distribución por Canal de Atención</h3>
+                    <p>Clasificación de interacciones auditadas</p>
+                </div>
+
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h4>📞 Llamadas Entrantes</h4>
+                        <div class="stat" style="color: var(--nu-purple);">100</div>
+                        <div class="label">39% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>📧 Email</h4>
+                        <div class="stat" style="color: var(--nu-success-light);">93</div>
+                        <div class="label">37% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>💬 Chat</h4>
+                        <div class="stat" style="color: var(--nu-alert);">63</div>
+                        <div class="label">25% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>📊 Total Interacciones</h4>
+                        <div class="stat" style="color: var(--nu-text);">256</div>
+                        <div class="label">Período analizado</div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- DISTRIBUCIÓN POR TIPO DE SOLICITUD -->
+                <div class="subsection-title">
+                    <span class="icon">📋</span>
+                    <h3>Distribución por Tipo de Solicitud</h3>
+                    <p>Clasificación de casos Special Cases</p>
+                </div>
+
+                <div class="provider-grid">
+                    <div class="provider-card">
+                        <h4>📝 Quejas (Complaint)</h4>
+                        <div class="stat" style="color: var(--nu-error);">184</div>
+                        <div class="label">70% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>🏦 PQR Ahorro</h4>
+                        <div class="stat" style="color: var(--nu-success);">77</div>
+                        <div class="label">30% del total</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>✅ Meta Alcanzada</h4>
+                        <div class="stat green">193</div>
+                        <div class="label">Achieved: YES</div>
+                    </div>
+                    <div class="provider-card">
+                        <h4>⚠️ Oportunidades</h4>
+                        <div class="stat orange">68</div>
+                        <div class="label">Achieved: NO</div>
+                    </div>
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- PRINCIPALES CRITERIOS DE FALLA -->
+                <div class="subsection-title">
+                    <span class="icon">⚠️</span>
+                    <h3>Principales Criterios de Falla</h3>
+                    <p>Oportunidades de mejora identificadas</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Criterio Evaluado</th>
+                                <th>Fallas</th>
+                                <th>% Error</th>
+                                <th>Impacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="semana">¿Tuvo despedida acorde a excepciones? (Promovió encuesta)</td>
+                                <td style="font-weight: 600; color: var(--nu-error);">13</td>
+                                <td>5.1%</td>
+                                <td><span class="badge badge-error">🔴 Crítico</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Mantuvo el tono Nu? (No fue cálidamente interactivo)</td>
+                                <td style="font-weight: 600; color: var(--nu-error);">10</td>
+                                <td>3.9%</td>
+                                <td><span class="badge badge-error">🔴 Crítico</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Adaptó dimensiones del tono de voz?</td>
+                                <td style="font-weight: 600; color: var(--nu-alert);">2</td>
+                                <td>0.8%</td>
+                                <td><span class="badge badge-warning">🟠 Alto</span></td>
+                            </tr>
+                            <tr>
+                                <td class="semana">¿Fue leído el historial de interacciones?</td>
+                                <td style="font-weight: 600; color: var(--nu-alert);">2</td>
+                                <td>0.8%</td>
+                                <td><span class="badge badge-warning">🟠 Alto</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <strong>💡 Insight Principal:</strong> El error más frecuente es promover la encuesta en interacciones de PQR/Quejas donde no aplica. 
+                    Se recomienda reforzar capacitación sobre excepciones de despedida en casos especiales.
+                </div>
+
+                <div class="spacer"></div>
+
+                <!-- RECONOCIMIENTOS POSITIVOS -->
+                <div class="subsection-title">
+                    <span class="icon">🌟</span>
+                    <h3>Reconocimientos Positivos</h3>
+                    <p>Gestiones destacadas del período</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success-light); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Brigitte Berrio</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Excelente gestión, manejas bien los casos de PQR. Felicito tu intención de ayudar aún cuando la gestión quedó expirada por otro agente."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success-light); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Nicolas Gonzalez</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Excelente gestión, maneja un caso difícil que se convierte en un momento agradable tanto para el agente como para la cliente. Felicitaciones, muy buena gestión."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success-light); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Carol Pinzon</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Interacción perfecta con 100% de calidad. Manejo impecable de PQR de quejas con cliente difícil."</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(0,141,104,0.05) 0%, rgba(46,189,174,0.05) 100%); border-left: 3px solid var(--nu-success-light); padding: 1rem; border-radius: 0 0.75rem 0.75rem 0;">
+                        <div style="font-weight: 600; color: var(--nu-text); margin-bottom: 0.5rem;">🏆 Sahian Correa</div>
+                        <p style="font-size: 0.8rem; color: var(--nu-text-secondary); line-height: 1.4;">"Gestión consistente con múltiples evaluaciones al 100%. Excelente manejo del tono Nu y despedidas correctas."</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">Nu</div>
+                <span style="font-weight: 600; color: var(--nu-text);">QA Metrics Dashboard</span>
+                <span style="color: var(--nu-text-secondary); font-size: 0.8rem; margin-left: 0.5rem;">| Preparado por: Julian Holguin</span>
+            </div>
+            <p class="footer-text" id="footer-date"></p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== DATA ====================
+        // tipo: 'normal', 'trial', 'festivo'
+        const dataCancelaciones = [
+            { semana: 'Oct 06-12', target: 70, realizadas: 39, qaScore: 82.05, tipo: 'trial' },
+            { semana: 'Oct 13-19', target: 70, realizadas: 42, qaScore: 74.42, tipo: 'trial' },
+            { semana: 'Oct 20-26', target: 70, realizadas: 120, qaScore: 87.50, tipo: 'normal' },
+            { semana: 'Oct 27-Nov 02', target: 70, realizadas: 70, qaScore: 88.57, tipo: 'normal' },
+            { semana: 'Nov 03-09', target: 70, realizadas: 70, qaScore: 85.71, tipo: 'normal' },
+            { semana: 'Nov 10-16', target: 106, realizadas: 153, qaScore: 92.16, tipo: 'normal' },
+            { semana: 'Nov 17-23', target: 106, realizadas: 106, qaScore: 85.85, tipo: 'normal' },
+            { semana: 'Nov 24-30', target: 106, realizadas: 106, qaScore: 81.13, tipo: 'normal' },
+            { semana: 'Dic 01-07', target: 106, realizadas: 106, qaScore: 93.40, tipo: 'normal' },
+            { semana: 'Dic 08-14', target: 106, realizadas: 100, qaScore: 86.00, tipo: 'festivo' },
+            { semana: 'Dic 15-21', target: 106, realizadas: 97, qaScore: 91.75, tipo: 'normal' },
+            { semana: 'Dic 22-28', target: 95, realizadas: 94, qaScore: 91.49, tipo: 'festivo' },
+            { semana: 'Dic 29-Ene 04', target: 106, realizadas: 94, qaScore: 92.55, tipo: 'festivo' },
+            { semana: 'Ene 05-11', target: 82, realizadas: 82, qaScore: 92.68, tipo: 'normal' },
+            { semana: 'Ene 12-18', target: 106, realizadas: 94, qaScore: 77.66, tipo: 'normal' },
+            { semana: 'Ene 19-25', target: 106, realizadas: 124, qaScore: 73.39, tipo: 'normal' },
+        ];
+
+        const dataSpecialCases = [
+            { semana: 'Oct 13-19', auditorias: 19, qaScore: 84.21 },
+            { semana: 'Oct 20-26', auditorias: 16, qaScore: 90.12 },
+            { semana: 'Oct 27-Nov 02', auditorias: 16, qaScore: 85.59 },
+            { semana: 'Nov 03-09', auditorias: 12, qaScore: 83.33 },
+            { semana: 'Nov 10-16', auditorias: 16, qaScore: 86.92 },
+            { semana: 'Nov 17-23', auditorias: 15, qaScore: 93.85 },
+            { semana: 'Nov 24-30', auditorias: 17, qaScore: 91.18 },
+            { semana: 'Dic 01-07', auditorias: 17, qaScore: 85.52 },
+            { semana: 'Dic 08-14', auditorias: 17, qaScore: 91.89 },
+            { semana: 'Dic 15-21', auditorias: 18, qaScore: 88.47 },
+            { semana: 'Dic 22-28', auditorias: 16, qaScore: 93.27 },
+            { semana: 'Dic 29-Ene 04', auditorias: 16, qaScore: 86.90 },
+            { semana: 'Ene 05-11', auditorias: 16, qaScore: 90.96 },
+            { semana: 'Ene 12-18', auditorias: 17, qaScore: 89.59 },
+            { semana: 'Ene 19-25', auditorias: 17, qaScore: 70.59 },
+        ];
+
+        // ==================== CALCULATIONS ====================
+        // Cancelaciones - excluir período de prueba para cálculos de cumplimiento
+        const dataOperativa = dataCancelaciones.filter(d => d.tipo !== 'trial');
+        const cancTotal = dataOperativa.reduce((s, d) => s + d.realizadas, 0);
+        const cancTarget = dataOperativa.reduce((s, d) => s + d.target, 0);
+        const cancCumplimiento = ((cancTotal / cancTarget) * 100).toFixed(0);
+        const cancExtra = cancTotal - cancTarget;
+
+        // QA Score - también excluir período de prueba para el promedio
+        const cancQAAvg = (dataOperativa.reduce((s, d) => s + d.qaScore, 0) / dataOperativa.length).toFixed(1);
+        const cancMax = dataOperativa.reduce((m, d) => d.qaScore > m.qaScore ? d : m);
+        const cancMin = dataOperativa.reduce((m, d) => d.qaScore < m.qaScore ? d : m);
+        const cancSem90 = dataOperativa.filter(d => d.qaScore >= 90).length;
+        const cancSem80 = dataOperativa.filter(d => d.qaScore >= 80 && d.qaScore < 90).length;
+        const cancSemBajo = dataOperativa.filter(d => d.qaScore < 80).length;
+
+        // Special Cases
+        const scTotal = dataSpecialCases.reduce((s, d) => s + d.auditorias, 0);
+        const scAvgWeek = (scTotal / dataSpecialCases.length).toFixed(1);
+        const scQAAvg = (dataSpecialCases.reduce((s, d) => s + d.qaScore, 0) / dataSpecialCases.length).toFixed(1);
+        const scMax = dataSpecialCases.reduce((m, d) => d.qaScore > m.qaScore ? d : m);
+        const scMin = dataSpecialCases.reduce((m, d) => d.qaScore < m.qaScore ? d : m);
+        const scSem90 = dataSpecialCases.filter(d => d.qaScore >= 90).length;
+        const scSem80 = dataSpecialCases.filter(d => d.qaScore >= 80 && d.qaScore < 90).length;
+        const scSemBajo = dataSpecialCases.filter(d => d.qaScore < 80).length;
+
+        // Update DOM - Cancelaciones
+        document.getElementById('canc-total').textContent = cancTotal.toLocaleString('es-CO');
+        document.getElementById('canc-target').textContent = cancTarget.toLocaleString('es-CO');
+        document.getElementById('canc-cumplimiento').textContent = cancCumplimiento + '%';
+        document.getElementById('canc-extra').textContent = '+' + cancExtra;
+        document.getElementById('canc-qa-avg').textContent = cancQAAvg + '%';
+        document.getElementById('canc-qa-max').textContent = cancMax.qaScore + '%';
+        document.getElementById('canc-qa-max-week').textContent = cancMax.semana;
+        document.getElementById('canc-qa-min').textContent = cancMin.qaScore + '%';
+        document.getElementById('canc-qa-min-week').textContent = cancMin.semana;
+        document.getElementById('canc-gap').textContent = (parseFloat(cancQAAvg) - 95).toFixed(1) + '%';
+        document.getElementById('canc-sem-90').textContent = cancSem90;
+        document.getElementById('canc-sem-80').textContent = cancSem80;
+        document.getElementById('canc-sem-bajo').textContent = cancSemBajo;
+
+        // Update DOM - Special Cases
+        document.getElementById('sc-total').textContent = scTotal;
+        document.getElementById('sc-avg-week').textContent = scAvgWeek;
+        document.getElementById('sc-qa-avg').textContent = scQAAvg + '%';
+        document.getElementById('sc-qa-max').textContent = scMax.qaScore + '%';
+        document.getElementById('sc-qa-max-week').textContent = scMax.semana;
+        document.getElementById('sc-qa-min').textContent = scMin.qaScore + '%';
+        document.getElementById('sc-qa-min-week').textContent = scMin.semana;
+        document.getElementById('sc-gap').textContent = (parseFloat(scQAAvg) - 95).toFixed(1) + '%';
+        document.getElementById('sc-sem-90').textContent = scSem90;
+        document.getElementById('sc-sem-80').textContent = scSem80;
+        document.getElementById('sc-sem-bajo').textContent = scSemBajo;
+
+        // Footer
+        document.getElementById('footer-date').textContent = '© 2025-2026 Nubank Colombia • Generado el ' + new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // ==================== BADGES ====================
+        function getCumplimientoBadge(r, t, tipo) {
+            if (tipo === 'trial') {
+                return '<span class="badge badge-trial">🔬 Período de Prueba</span>';
+            }
+            
+            const p = (r / t) * 100;
+            
+            if (tipo === 'festivo') {
+                // En festivos, ≥80% se considera cumplido
+                if (p >= 80) {
+                    return '<span class="badge badge-festivo">🎄 Cumplido (Festivo)</span>';
+                }
+            }
+            
+            if (p >= 110) return '<span class="badge badge-excellence">🚀 Sobrecumplimiento</span>';
+            if (p >= 100) return '<span class="badge badge-success">✅ Cumplido</span>';
+            if (p >= 80) return '<span class="badge badge-warning">⚠️ Parcial</span>';
+            return '<span class="badge badge-error">❌ Bajo</span>';
+        }
+
+        function getQABadge(s) {
+            if (s >= 95) return '<span class="badge badge-excellence">🌟 Excelente</span>';
+            if (s >= 90) return '<span class="badge badge-success">✅ Muy bueno</span>';
+            if (s >= 80) return '<span class="badge badge-warning">⚠️ Mejorable</span>';
+            return '<span class="badge badge-error">❌ Crítico</span>';
+        }
+
+        // ==================== TABLES ====================
+        // Cancelaciones - Cumplimiento
+        const tCC = document.getElementById('table-canc-cumplimiento');
+        dataCancelaciones.forEach(r => {
+            const pct = ((r.realizadas / r.target) * 100).toFixed(0);
+            const rowClass = r.tipo === 'trial' ? 'class="trial-row"' : '';
+            
+            tCC.innerHTML += `<tr ${rowClass}>
+                <td class="semana">${r.semana}</td>
+                <td>${r.target}</td>
+                <td style="font-weight:600">${r.realizadas}</td>
+                <td style="font-weight:600">${pct}%</td>
+                <td>${getCumplimientoBadge(r.realizadas, r.target, r.tipo)}</td>
+            </tr>`;
+        });
+
+        // Cancelaciones - QA (solo período operativo)
+        const tCQ = document.getElementById('table-canc-qa');
+        dataOperativa.forEach(r => {
+            tCQ.innerHTML += `<tr><td class="semana">${r.semana}</td><td style="font-weight:700">${r.qaScore}%</td><td>${getQABadge(r.qaScore)}</td></tr>`;
+        });
+
+        // Special Cases - Cumplimiento
+        const tSC = document.getElementById('table-sc-cumplimiento');
+        dataSpecialCases.forEach(r => {
+            tSC.innerHTML += `<tr><td class="semana">${r.semana}</td><td style="font-weight:600">${r.auditorias}</td><td><span class="badge badge-success">✅ Completo</span></td></tr>`;
+        });
+
+        // Special Cases - QA
+        const tSQ = document.getElementById('table-sc-qa');
+        dataSpecialCases.forEach(r => {
+            tSQ.innerHTML += `<tr><td class="semana">${r.semana}</td><td style="font-weight:700">${r.qaScore}%</td><td>${getQABadge(r.qaScore)}</td></tr>`;
+        });
+
+        // ==================== CHARTS ====================
+        function drawCancCumplimientoChart() {
+            const container = document.getElementById('chart-canc-cumplimiento');
+            const svg = document.getElementById('svg-canc-cumplimiento');
+            if (!container || !svg) return;
+
+            const w = container.clientWidth, h = 280;
+            const p = { t: 20, r: 20, b: 60, l: 45 };
+            const cw = w - p.l - p.r, ch = h - p.t - p.b;
+
+            svg.setAttribute('width', w);
+            svg.setAttribute('height', h);
+            svg.innerHTML = '';
+
+            const max = Math.max(...dataCancelaciones.map(d => Math.max(d.realizadas, d.target))) * 1.15;
+            const bw = (cw / dataCancelaciones.length) * 0.55;
+            const bg = (cw / dataCancelaciones.length) * 0.45;
+
+            // Grid
+            for (let i = 0; i <= 4; i++) {
+                const y = p.t + (ch / 4) * i;
+                svg.innerHTML += `<line x1="${p.l}" y1="${y}" x2="${w - p.r}" y2="${y}" stroke="#e5e5e5" stroke-dasharray="3,3"/>
+                    <text x="${p.l - 6}" y="${y + 3}" fill="#767676" font-size="9" text-anchor="end">${Math.round(max - (max / 4) * i)}</text>`;
+            }
+
+            let targetPts = [];
+            dataCancelaciones.forEach((d, i) => {
+                const x = p.l + i * (cw / dataCancelaciones.length) + bg / 2;
+                const bh = (d.realizadas / max) * ch;
+                const y = p.t + ch - bh;
+                
+                // Color según tipo y cumplimiento
+                let color;
+                if (d.tipo === 'trial') {
+                    color = '#999'; // Gris para período de prueba
+                } else if (d.tipo === 'festivo' && (d.realizadas / d.target) >= 0.8) {
+                    color = '#1E88E5'; // Azul para festivo cumplido
+                } else if (d.realizadas >= d.target) {
+                    color = '#820AD1'; // Morado para cumplido/sobre
+                } else if ((d.realizadas / d.target) >= 0.8) {
+                    color = '#FD9726'; // Naranja para parcial
+                } else {
+                    color = '#E53E3E'; // Rojo para bajo
+                }
+
+                svg.innerHTML += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="${color}" rx="4"
+                    onmouseenter="showTooltip(event,'tooltip-canc-cumplimiento',${i})" onmouseleave="hideTooltip('tooltip-canc-cumplimiento')"/>`;
+
+                const ty = p.t + ch - (d.target / max) * ch;
+                targetPts.push(`${x + bw / 2},${ty}`);
+
+                const lbl = d.semana.split(' ')[0].substring(0, 5);
+                svg.innerHTML += `<text x="${x + bw / 2}" y="${h - p.b + 10}" fill="#767676" font-size="8" text-anchor="end" transform="rotate(-45,${x + bw / 2},${h - p.b + 10})">${lbl}</text>`;
+            });
+
+            svg.innerHTML += `<polyline points="${targetPts.join(' ')}" fill="none" stroke="#FD9726" stroke-width="2" stroke-dasharray="5,3"/>`;
+            targetPts.forEach(pt => { const [x, y] = pt.split(','); svg.innerHTML += `<circle cx="${x}" cy="${y}" r="3" fill="#FD9726"/>`; });
+        }
+
+        function drawLineChart(containerId, svgId, data, color) {
+            const container = document.getElementById(containerId);
+            const svg = document.getElementById(svgId);
+            if (!container || !svg) return;
+
+            const w = container.clientWidth, h = 240;
+            const p = { t: 15, r: 15, b: 50, l: 35 };
+            const cw = w - p.l - p.r, ch = h - p.t - p.b;
+
+            svg.setAttribute('width', w);
+            svg.setAttribute('height', h);
+            svg.innerHTML = '';
+
+            // Grid
+            for (let i = 0; i <= 4; i++) {
+                const y = p.t + (ch / 4) * i;
+                svg.innerHTML += `<line x1="${p.l}" y1="${y}" x2="${w - p.r}" y2="${y}" stroke="#e5e5e5" stroke-dasharray="3,3"/>
+                    <text x="${p.l - 4}" y="${y + 3}" fill="#767676" font-size="8" text-anchor="end">${100 - 25 * i}%</text>`;
+            }
+
+            // Target 95%
+            const ty = p.t + ch - (95 / 100) * ch;
+            svg.innerHTML += `<line x1="${p.l}" y1="${ty}" x2="${w - p.r}" y2="${ty}" stroke="#FD9726" stroke-width="2" stroke-dasharray="6,3"/>`;
+
+            const step = cw / data.length;
+            let pts = [];
+            data.forEach((d, i) => {
+                const x = p.l + i * step + step / 2;
+                const y = p.t + ch - (d.qaScore / 100) * ch;
+                pts.push(`${x},${y}`);
+            });
+
+            // Area + Line
+            svg.innerHTML += `<polygon points="${p.l + step/2},${p.t + ch} ${pts.join(' ')} ${p.l + (data.length - 1) * step + step/2},${p.t + ch}" fill="${color}15"/>`;
+            svg.innerHTML += `<polyline points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>`;
+
+            // Dots
+            data.forEach((d, i) => {
+                const x = p.l + i * step + step / 2;
+                const y = p.t + ch - (d.qaScore / 100) * ch;
+                const dc = d.qaScore >= 90 ? '#008D68' : d.qaScore >= 80 ? '#FD9726' : '#E53E3E';
+                svg.innerHTML += `<circle cx="${x}" cy="${y}" r="4" fill="${dc}" stroke="white" stroke-width="1.5"/>`;
+            });
+        }
+
+        function drawSCCumplimiento() {
+            const container = document.getElementById('chart-sc-cumplimiento');
+            const svg = document.getElementById('svg-sc-cumplimiento');
+            if (!container || !svg) return;
+
+            const w = container.clientWidth, h = 280;
+            const p = { t: 20, r: 20, b: 60, l: 45 };
+            const cw = w - p.l - p.r, ch = h - p.t - p.b;
+
+            svg.setAttribute('width', w);
+            svg.setAttribute('height', h);
+            svg.innerHTML = '';
+
+            const max = Math.max(...dataSpecialCases.map(d => d.auditorias)) * 1.2;
+            const bw = (cw / dataSpecialCases.length) * 0.55;
+            const bg = (cw / dataSpecialCases.length) * 0.45;
+
+            for (let i = 0; i <= 4; i++) {
+                const y = p.t + (ch / 4) * i;
+                svg.innerHTML += `<line x1="${p.l}" y1="${y}" x2="${w - p.r}" y2="${y}" stroke="#e5e5e5" stroke-dasharray="3,3"/>
+                    <text x="${p.l - 6}" y="${y + 3}" fill="#767676" font-size="9" text-anchor="end">${Math.round(max - (max / 4) * i)}</text>`;
+            }
+
+            dataSpecialCases.forEach((d, i) => {
+                const x = p.l + i * (cw / dataSpecialCases.length) + bg / 2;
+                const bh = (d.auditorias / max) * ch;
+                const y = p.t + ch - bh;
+
+                svg.innerHTML += `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="#2EBDAE" rx="4"/>`;
+
+                const lbl = d.semana.split(' ')[0].substring(0, 5);
+                svg.innerHTML += `<text x="${x + bw / 2}" y="${h - p.b + 10}" fill="#767676" font-size="8" text-anchor="end" transform="rotate(-45,${x + bw / 2},${h - p.b + 10})">${lbl}</text>`;
+            });
+        }
+
+        // Tooltip
+        function showTooltip(e, tooltipId, idx) {
+            const tt = document.getElementById(tooltipId);
+            const d = dataCancelaciones[idx];
+            const pct = ((d.realizadas / d.target) * 100).toFixed(0);
+            
+            let tipoLabel = '';
+            if (d.tipo === 'trial') tipoLabel = '<div style="color:#666;margin-top:4px">🔬 Período de Prueba</div>';
+            else if (d.tipo === 'festivo') tipoLabel = '<div style="color:#1E88E5;margin-top:4px">🎄 Semana Festiva</div>';
+            
+            tt.innerHTML = `<div class="tooltip-title">${d.semana}</div>
+                <div class="tooltip-row"><div class="tooltip-dot" style="background:#820AD1"></div>Realizadas: <span class="tooltip-value">${d.realizadas}</span></div>
+                <div class="tooltip-row"><div class="tooltip-dot" style="background:#FD9726"></div>Target: <span class="tooltip-value">${d.target}</span></div>
+                <div class="tooltip-row">Cumplimiento: <span class="tooltip-value">${pct}%</span></div>
+                ${tipoLabel}`;
+            const r = e.target.getBoundingClientRect();
+            const cr = e.target.closest('.chart-container').getBoundingClientRect();
+            tt.style.left = Math.min(r.left - cr.left, cr.width - 160) + 'px';
+            tt.style.top = (r.top - cr.top - 100) + 'px';
+            tt.classList.add('visible');
+        }
+
+        function hideTooltip(id) { document.getElementById(id).classList.remove('visible'); }
+
+        // Init
+        drawCancCumplimientoChart();
+        drawLineChart('chart-canc-qa', 'svg-canc-qa', dataOperativa, '#820AD1');
+        drawSCCumplimiento();
+        drawLineChart('chart-sc-qa', 'svg-sc-qa', dataSpecialCases, '#008D68');
+
+        window.addEventListener('resize', () => {
+            drawCancCumplimientoChart();
+            drawLineChart('chart-canc-qa', 'svg-canc-qa', dataOperativa, '#820AD1');
+            drawSCCumplimiento();
+            drawLineChart('chart-sc-qa', 'svg-sc-qa', dataSpecialCases, '#008D68');
+        });
+    </script>
+</body>
+</html>
